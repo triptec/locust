@@ -148,7 +148,7 @@ class StatsEntry(object):
     def _log_response_time(self, response_time):
         self.total_response_time += response_time
 
-        if self.min_response_time is None:
+        if self.min_response_time is None or self.min_response_time == 0:
             self.min_response_time = response_time
 
         self.min_response_time = min(self.min_response_time, response_time)
