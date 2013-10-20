@@ -149,7 +149,7 @@ class StatsEntry(object):
 
     def _log_response_time(self, response_time):
 
-        lol_logger.info(self.name + ";" + "%d;%d" % self.last_request_timestamp, response_time)
+        lol_logger.info(self.name + ";" + "%d;%d" % (self.last_request_timestamp, response_time))
         self.total_response_time += response_time
 
         if self.min_response_time is None or self.min_response_time == 0:
