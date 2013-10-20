@@ -5,6 +5,7 @@ import hashlib
 import events
 from exception import StopLocust
 from log import console_logger
+from log import lol_logger
 
 STATS_NAME_WIDTH = 60
 
@@ -139,6 +140,7 @@ class StatsEntry(object):
         # increase total content-length
         self.total_content_length += content_length
 
+
     def _log_time_of_request(self):
         t = int(time.time())
         self.num_reqs_per_sec[t] = self.num_reqs_per_sec.setdefault(t, 0) + 1
@@ -146,6 +148,8 @@ class StatsEntry(object):
         self.stats.last_request_timestamp = t
 
     def _log_response_time(self, response_time):
+
+        lol_logger.info(response_time)
         self.total_response_time += response_time
 
         if self.min_response_time is None or self.min_response_time == 0:

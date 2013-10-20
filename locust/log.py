@@ -45,3 +45,6 @@ console_logger.propagate = False
 # configure python-requests log level
 requests_log = logging.getLogger("requests")
 requests_log.setLevel(logging.WARNING)
+
+lol_logger = logging.getLogger("lol")
+lol_logger.basicConfig(filename='lol.log', filemode='w', level=logging.DEBUG)
