@@ -176,7 +176,7 @@ class StatsEntry(object):
 
     def log_error(self, error):
         self.num_failures += 1
-        self.num_requests += 1
+        self.stats.num_requests += 1
         key = StatsError.create_key(self.method, self.name, error)
         entry = self.stats.errors.get(key)
         if not entry:
