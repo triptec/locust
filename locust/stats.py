@@ -176,6 +176,7 @@ class StatsEntry(object):
 
     def log_error(self, error):
         self.num_failures += 1
+        self.num_requests += 1
         key = StatsError.create_key(self.method, self.name, error)
         entry = self.stats.errors.get(key)
         if not entry:
@@ -419,6 +420,8 @@ def on_request_success(method, name, response_time, response_length):
     global_stats.get(name, method).log(response_time, response_length)
 
 def on_request_failure(method, name, response_time, error, response=None):
+    if global_stats.max_requests is not None and global_stats.num_requests >= global_stats.max_requests:
+        raise StopLocust("Maximum number of requests reached")
     global_stats.get(name, method).log_error(error)
 
 def on_report_to_master(client_id, data):
