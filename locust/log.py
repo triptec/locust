@@ -47,5 +47,5 @@ requests_log = logging.getLogger("requests")
 requests_log.setLevel(logging.WARNING)
 
 lol_logger = logging.getLogger("lol_logger")
-f = logging.FileHandler('lol.log', 'w')
+f = logging.FileHandler('lol.log', 'a')
 lol_logger.addHandler(f)
